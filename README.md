@@ -70,6 +70,15 @@ http://本机局域网IP:4387/codex/
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\start-backend.ps1
 ```
 
+首次安装也可以执行：
+
+```powershell
+.\install.ps1
+```
+
+该脚本按提交的锁文件运行 `npm ci`。安装完成后再运行启动脚本；
+使用 `.\install.ps1 -Start` 可以在安装成功后直接启动。
+
 ## Codex CLI 查找
 
 启动顺序如下：
@@ -145,6 +154,7 @@ codex-browser-reuse/
   browser-*.js / browser-*.css
   desktop-*.js
   lan-auth.js / lan-login.css
+  install.ps1
   start-backend.ps1
   stop-backend.ps1
   restart-backend.ps1
@@ -165,7 +175,7 @@ codex-browser-reuse/
 {
   "plugins": {
     "sidebar-touch-scroll": true,
-    "sidebar-performance": false
+    "sidebar-performance": true
   },
   "themes": {
     "nahida": false
@@ -176,6 +186,10 @@ codex-browser-reuse/
 纳西妲主题已经迁移到 `extensions/themes/nahida/`，但默认关闭。开启后刷新
 页面；关闭后刷新页面即可回退。当前主题仍绑定这份固定官方前端，升级官方资源
 后需要重新检查选择器和视觉效果。
+
+`sidebar-performance` 默认开启。它只在侧栏滚动期间暂停官方侧栏 CSS 动画，
+并关闭滚动期间不必要的视觉重绘；它不改会话、文件或模型请求。若需要对比
+官方原始表现，把该值改为 `false` 后刷新浏览器。
 
 ## 测试
 

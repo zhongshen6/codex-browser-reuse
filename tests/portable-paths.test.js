@@ -43,13 +43,20 @@ test("project-owned paths follow relocation rather than the caller working direc
 
 test("machine-level CLI and user state overrides survive relocation", () => {
   // Relocating the bridge must never relocate account credentials or sessions.
+  const externalRoot = fs.mkdtempSync(path.join(os.tmpdir(), "codex-external-cli-"));
+  const externalCli = path.join(externalRoot, "codex.exe");
+  fs.writeFileSync(externalCli, "");
   const env = {
     CODEX_HOME: path.join(os.tmpdir(), "external-codex-home"),
-    CODEX_BIN: path.join(os.tmpdir(), "external-cli", "codex.exe")
+    CODEX_BIN: externalCli
   };
-  const state = bootstrap(path.join(os.tmpdir(), "moved-bridge"), env);
-  assert.equal(state.codexHome, env.CODEX_HOME);
-  assert.equal(state.codexExe, env.CODEX_BIN);
+  try {
+    const state = bootstrap(path.join(os.tmpdir(), "moved-bridge"), env);
+    assert.equal(state.codexHome, env.CODEX_HOME);
+    assert.equal(state.codexExe, env.CODEX_BIN);
+  } finally {
+    fs.rmSync(externalRoot, { recursive: true, force: true });
+  }
 });
 
 test("packaged renderer and extension assets are contained in the project", () => {

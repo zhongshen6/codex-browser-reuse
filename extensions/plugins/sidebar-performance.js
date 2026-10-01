@@ -16,8 +16,13 @@
       transition-property: none !important;
     }
 
-    /* The official edge fade is decorative and need not animate while scrolling. */
-    html[data-codex-performance-scrolling="true"] aside.app-shell-left-panel .vertical-scroll-fade-mask {
+    /*
+     * The official sidebar can keep CSS animations alive while a long list is
+     * moving. Pause every sidebar animation during the gesture so animation
+     * sampling and paint invalidation do not compete with scroll updates.
+     */
+    html[data-codex-performance-scrolling="true"] aside.app-shell-left-panel,
+    html[data-codex-performance-scrolling="true"] aside.app-shell-left-panel * {
       animation: none !important;
     }
 

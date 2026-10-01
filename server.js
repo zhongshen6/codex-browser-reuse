@@ -33,12 +33,23 @@ const globalStatePath = path.join(codexHome, ".codex-global-state.json");
 function findCodexExecutable() {
   // Prefer an explicit path so portable installs and package managers remain
   // predictable. The other probes only fill in a normal Windows install.
-  if (process.env.CODEX_BIN) return path.resolve(process.env.CODEX_BIN);
+  if (process.env.CODEX_BIN) {
+    const explicit = path.resolve(process.env.CODEX_BIN);
+    if (fs.existsSync(explicit)) return explicit;
+    throw new Error(`CODEX_BIN does not point to an executable: ${explicit}`);
+  }
   const candidates = [];
+  const addCandidate = candidate => {
+    if (candidate && !candidates.includes(candidate) && fs.existsSync(candidate)) {
+      candidates.push(candidate);
+    }
+  };
   try {
     const output = execFileSync(process.platform === "win32" ? "where.exe" : "which",
       ["codex.exe"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
-    candidates.push(...output.split(/\r?\n/).map(value => value.trim()).filter(Boolean));
+    for (const value of output.split(/\r?\n/).map(value => value.trim()).filter(Boolean)) {
+      addCandidate(value);
+    }
   } catch {}
   if (process.platform === "win32") {
     try {
@@ -47,11 +58,13 @@ function findCodexExecutable() {
         "(Get-AppxPackage -Name 'OpenAI.Codex*' | Sort-Object Version -Descending | Select-Object -First 1 -ExpandProperty InstallLocation)"
       ], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
       if (installLocation) {
-        candidates.push(path.join(installLocation, "app", "resources", "codex.exe"));
+        // AppX layouts have shipped both the resource CLI and a launcher.
+        addCandidate(path.join(installLocation, "app", "resources", "codex.exe"));
+        addCandidate(path.join(installLocation, "app", "codex.exe"));
       }
     } catch {}
   }
-  return candidates.find(candidate => fs.existsSync(candidate)) || null;
+  return candidates[0] || null;
 }
 
 const codexExe = findCodexExecutable();

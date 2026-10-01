@@ -5,6 +5,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $project = $PSScriptRoot
 $serverFile = Join-Path $project 'server.js'
+$rendererIndex = Join-Path $project 'runtime\codex-frontend-26.917.9434\webview\index.html'
 $logs = Join-Path $project 'logs'
 $pidFile = Join-Path $logs 'browser-backend.pid'
 $stdoutFile = Join-Path $logs 'browser-backend.stdout.log'
@@ -13,8 +14,19 @@ $stderrFile = Join-Path $logs 'browser-backend.stderr.log'
 if (-not (Test-Path -LiteralPath $serverFile -PathType Leaf)) {
     throw "Backend entry point not found: $serverFile"
 }
+if (-not (Test-Path -LiteralPath $rendererIndex -PathType Leaf)) {
+    throw "Packaged Codex frontend not found: $rendererIndex"
+}
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
 $node = (Get-Command node.exe -ErrorAction Stop).Source
+$npm = (Get-Command npm.cmd -ErrorAction SilentlyContinue).Source
+if (-not $npm) {
+    throw 'npm.cmd was not found. Install Node.js with npm, then run .\install.ps1.'
+}
+$nodeMajor = [int]((& $node '--version').TrimStart('v').Split('.')[0])
+if ($nodeMajor -lt 18) {
+    throw "Node.js 18 or newer is required. Found: $(& $node '--version')"
+}
 $basePath = & $node -e 'console.log(require(process.argv[1]).loadDeployment(process.argv[2]).basePath)' `
     (Join-Path $project 'deployment.js') $project
 if ($LASTEXITCODE -ne 0) { throw 'Invalid deployment configuration.' }
@@ -30,16 +42,29 @@ if (Get-Listener) {
 
 # The server performs the same lookup. Doing it here gives a visible error
 # before a hidden background process can fail.
-if (-not $env:CODEX_BIN) {
-    $package = Get-AppxPackage -Name 'OpenAI.Codex*' -ErrorAction SilentlyContinue |
-        Sort-Object Version -Descending |
-        Select-Object -First 1
-    if ($package) {
-        $env:CODEX_BIN = Join-Path $package.InstallLocation 'app\resources\codex.exe'
-    } elseif (-not (Get-Command codex.exe -ErrorAction SilentlyContinue)) {
-        throw 'Codex CLI was not found. Install Codex, add codex.exe to PATH, or set CODEX_BIN.'
+function Resolve-CodexExecutable {
+    $candidates = [System.Collections.Generic.List[string]]::new()
+    if ($env:CODEX_BIN) {
+        $candidates.Add([IO.Path]::GetFullPath($env:CODEX_BIN))
+    } else {
+        $package = Get-AppxPackage -Name 'OpenAI.Codex*' -ErrorAction SilentlyContinue |
+            Sort-Object Version -Descending |
+            Select-Object -First 1
+        if ($package) {
+            # Accept both known AppX layouts, but only return an existing file.
+            $candidates.Add((Join-Path $package.InstallLocation 'app\resources\codex.exe'))
+            $candidates.Add((Join-Path $package.InstallLocation 'app\codex.exe'))
+        }
+        $pathCommand = Get-Command codex.exe -ErrorAction SilentlyContinue
+        if ($pathCommand) { $candidates.Add($pathCommand.Source) }
     }
+    $resolved = $candidates |
+        Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } |
+        Select-Object -First 1
+    if ($resolved) { return $resolved }
+    throw 'Codex CLI was not found. Install Codex, add codex.exe to PATH, or set CODEX_BIN to an existing file.'
 }
+$env:CODEX_BIN = Resolve-CodexExecutable
 
 $env:PORT = [string]$Port
 $backend = Start-Process -FilePath $node -ArgumentList "`"$serverFile`"" `
@@ -89,6 +114,7 @@ if (-not $appServerReady) {
 
 Set-Content -LiteralPath $pidFile -Value $backend.Id
 Write-Host "Backend ready: http://127.0.0.1:$Port$basePath"
+Write-Host "Codex CLI: $env:CODEX_BIN"
 Write-Host "App Server: running"
 Write-Host "PID: $($backend.Id)"
 Write-Host "Logs: $stdoutFile ; $stderrFile"

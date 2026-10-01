@@ -1,7 +1,7 @@
 {
   "plugins": {
     "sidebar-touch-scroll": true,
-    "sidebar-performance": false
+    "sidebar-performance": true
   },
   "themes": {
     "nahida": false
