@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-biceps-flexed-a4bc58d1121b6ce9.js";e();export{t as default};

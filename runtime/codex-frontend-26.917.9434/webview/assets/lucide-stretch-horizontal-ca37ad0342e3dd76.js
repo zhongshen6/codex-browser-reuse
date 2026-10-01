@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{n as t,t as n}from"./lucide-createLucideIcon-4b34f12702b0a0a1.js";var r;function i(){return(i=e((()=>{t(),r=n(`StretchHorizontal`,[[`rect`,{width:`20`,height:`6`,x:`2`,y:`4`,rx:`2`,key:`qdearl`}],[`rect`,{width:`20`,height:`6`,x:`2`,y:`14`,rx:`2`,key:`1xrn6j`}]])})))()}export{i as n,r as t};
+//# sourceMappingURL=lucide-stretch-horizontal-ca37ad0342e3dd76.js.map

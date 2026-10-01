@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-hand-d2ceded1675281fa.js";e();export{t as default};

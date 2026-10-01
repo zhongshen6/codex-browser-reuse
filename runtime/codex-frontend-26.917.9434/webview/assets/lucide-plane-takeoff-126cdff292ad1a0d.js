@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-plane-takeoff-aa0e7a15b193f0ae.js";e();export{t as default};

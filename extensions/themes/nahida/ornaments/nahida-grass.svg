@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 120" fill="none">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C9667" stop-opacity="0"/>
+      <stop offset="0.18" stop-color="#72B777"/>
+      <stop offset="0.52" stop-color="#C7A75F"/>
+      <stop offset="0.82" stop-color="#72B777"/>
+      <stop offset="1" stop-color="#5C9667" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="1" x2="0" y2="0">
+      <stop stop-color="#477A55"/>
+      <stop offset="1" stop-color="#B8E59A"/>
+    </linearGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="2.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <path d="M20 105C173 91 274 109 399 99C518 89 630 108 780 96" stroke="url(#ground)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M108 102C101 76 107 54 123 33C128 58 124 81 108 102Z" fill="url(#blade)"/>
+  <path d="M116 103C121 75 136 55 159 43C154 70 140 90 116 103Z" fill="url(#blade)"/>
+  <path d="M96 104C87 84 72 70 53 64C59 85 74 99 96 104Z" fill="url(#blade)"/>
+
+  <path d="M326 101C321 72 327 47 345 24C351 53 345 79 326 101Z" fill="url(#blade)"/>
+  <path d="M335 102C343 72 360 52 385 41C378 70 361 91 335 102Z" fill="url(#blade)"/>
+  <path d="M315 103C306 78 290 61 267 52C274 80 290 96 315 103Z" fill="url(#blade)"/>
+
+  <path d="M603 100C600 71 609 46 629 26C632 54 624 80 603 100Z" fill="url(#blade)"/>
+  <path d="M612 102C624 75 643 58 670 51C658 78 639 95 612 102Z" fill="url(#blade)"/>
+  <path d="M592 102C579 79 561 66 538 62C549 85 567 99 592 102Z" fill="url(#blade)"/>
+
+  <path d="M205 100C199 79 202 62 214 48C219 66 217 84 205 100Z" fill="url(#blade)" opacity="0.78"/>
+  <path d="M479 100C475 76 482 57 497 43C500 66 493 85 479 100Z" fill="url(#blade)" opacity="0.78"/>
+  <path d="M711 98C706 79 711 63 724 51C727 70 722 86 711 98Z" fill="url(#blade)" opacity="0.72"/>
+
+  <g transform="translate(219 45) scale(.62)" filter="url(#glow)">
+    <path d="M0 0C-11-19-27-14-22 0C-27 14-11 19 0 0Z" fill="#F7FFE8" stroke="#79C979" stroke-width="2"/>
+    <path d="M0 0C11-19 27-14 22 0C27 14 11 19 0 0Z" fill="#F7FFE8" stroke="#79C979" stroke-width="2"/>
+    <circle r="4" fill="#D4B86F"/>
+  </g>
+  <g transform="translate(505 39) scale(.72)" filter="url(#glow)">
+    <path d="M0 0C-11-19-27-14-22 0C-27 14-11 19 0 0Z" fill="#F7FFE8" stroke="#79C979" stroke-width="2"/>
+    <path d="M0 0C11-19 27-14 22 0C27 14 11 19 0 0Z" fill="#F7FFE8" stroke="#79C979" stroke-width="2"/>
+    <circle r="4" fill="#D4B86F"/>
+  </g>
+
+  <g fill="#D1B46B">
+    <path d="M52 80L55 87L62 90L55 93L52 100L49 93L42 90L49 87Z"/>
+    <path d="M411 71L414 78L421 81L414 84L411 91L408 84L401 81L408 78Z"/>
+    <path d="M746 68L749 75L756 78L749 81L746 88L743 81L736 78L743 75Z"/>
+  </g>
+</svg>

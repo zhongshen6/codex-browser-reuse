@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-square-power-2b12d7d00d147185.js";e();export{t as default};

@@ -1,0 +1,1 @@
+import{CSt as e,SSt as t}from"./app-initial-fc9a33fdda88.js";e();export{t as gitOriginsQuery$};

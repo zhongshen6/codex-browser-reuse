@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./profile-state-e0ce7aa9dee8.js";e();export{t as initializeBrowserExtensionProfile};

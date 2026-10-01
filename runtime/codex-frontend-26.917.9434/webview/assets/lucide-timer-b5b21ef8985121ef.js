@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{n as t,t as n}from"./lucide-createLucideIcon-4b34f12702b0a0a1.js";var r;function i(){return(i=e((()=>{t(),r=n(`Timer`,[[`line`,{x1:`10`,x2:`14`,y1:`2`,y2:`2`,key:`14vaq8`}],[`line`,{x1:`12`,x2:`15`,y1:`14`,y2:`11`,key:`17fdiu`}],[`circle`,{cx:`12`,cy:`14`,r:`8`,key:`1e1u0o`}]])})))()}export{i as n,r as t};
+//# sourceMappingURL=lucide-timer-b5b21ef8985121ef.js.map

@@ -1,0 +1,1 @@
+import{FG as e,IG as t,PG as n}from"./app-initial-fc9a33fdda88.js";n();export{e as savedEntitiesApi$,t as savedEntityStatus$};

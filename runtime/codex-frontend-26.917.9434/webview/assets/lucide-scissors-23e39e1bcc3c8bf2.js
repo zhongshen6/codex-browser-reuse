@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-scissors-c0fc92f40949e508.js";e();export{t as default};

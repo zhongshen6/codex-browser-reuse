@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-ice-cream-cone-5c82c6ea97470a3b.js";e();export{t as default};

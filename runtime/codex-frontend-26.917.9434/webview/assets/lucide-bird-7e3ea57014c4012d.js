@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-bird-837ccb6b4bb5893d.js";e();export{t as default};

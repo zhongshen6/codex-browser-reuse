@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{alt as e,elt as t,ilt as n,nlt as r,rlt as i,tlt as a}from"./app-initial-fc9a33fdda88.js";r();export{t as browserTabType,a as getBrowserTabIdForOpen,i as openBrowserThreadPanelTab,n as openBrowserThreadPanelTabWithPendingOpenState,e as openBrowserThreadPanelTabWithoutAnimation};

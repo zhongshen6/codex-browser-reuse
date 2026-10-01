@@ -1,0 +1,1 @@
+import{n as e,t}from"./skull-BK0kgoCY-79c6915c3513.js";e();export{t as default};

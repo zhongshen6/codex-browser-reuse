@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-chart-column-big-b4f685a8a4ad02a3.js";e();export{t as default};

@@ -1,0 +1,17 @@
+# Generated backend state and reinstallable bridge dependencies.
+/logs/
+/node_modules/
+# Local LAN credentials must never be committed or included in shared source archives.
+/config/lan-auth.json
+
+# The packaged renderer is the only required part of the exported frontend.
+# Electron build products and its original dependency tree are not loaded.
+/runtime/*/.vite/
+/runtime/*/node_modules/
+/runtime/*/native-menu-locales/
+/runtime/*/package.json
+
+# Temporary verification captures are not application assets.
+/*.png
+/tests/*.png
+*.log

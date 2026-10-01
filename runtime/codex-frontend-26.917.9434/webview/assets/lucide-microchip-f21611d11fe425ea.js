@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-microchip-874b426242898de7.js";e();export{t as default};

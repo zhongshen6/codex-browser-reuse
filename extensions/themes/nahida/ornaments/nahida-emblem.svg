@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+  <defs>
+    <linearGradient id="petal" x1="34" y1="24" x2="128" y2="139" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FFE9"/>
+      <stop offset="0.48" stop-color="#9BDB8F"/>
+      <stop offset="1" stop-color="#4E865C"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="36" y1="30" x2="126" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F1DFA1"/>
+      <stop offset="0.52" stop-color="#C2A35F"/>
+      <stop offset="1" stop-color="#806330"/>
+    </linearGradient>
+    <radialGradient id="core">
+      <stop stop-color="#F7FFD9"/>
+      <stop offset="0.45" stop-color="#B9F47F"/>
+      <stop offset="1" stop-color="#62A866"/>
+    </radialGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <path d="M80 10L87 34L108 22L103 47L132 43L112 63L148 80L112 97L132 117L103 113L108 138L87 126L80 150L73 126L52 138L57 113L28 117L48 97L12 80L48 63L28 43L57 47L52 22L73 34L80 10Z" stroke="url(#rim)" stroke-width="2" opacity="0.72"/>
+
+  <path d="M80 78C58 64 50 44 58 27C77 31 88 50 80 78Z" fill="url(#petal)" stroke="url(#rim)" stroke-width="2.5"/>
+  <path d="M82 80C96 58 116 50 133 58C129 77 110 88 82 80Z" fill="url(#petal)" stroke="url(#rim)" stroke-width="2.5"/>
+  <path d="M80 82C102 96 110 116 102 133C83 129 72 110 80 82Z" fill="url(#petal)" stroke="url(#rim)" stroke-width="2.5"/>
+  <path d="M78 80C64 102 44 110 27 102C31 83 50 72 78 80Z" fill="url(#petal)" stroke="url(#rim)" stroke-width="2.5"/>
+
+  <path d="M80 42C73 55 72 67 80 80C88 67 87 55 80 42Z" fill="#F8FFE9" opacity="0.7"/>
+  <path d="M118 80C105 73 93 72 80 80C93 88 105 87 118 80Z" fill="#F8FFE9" opacity="0.7"/>
+  <path d="M80 118C87 105 88 93 80 80C72 93 73 105 80 118Z" fill="#F8FFE9" opacity="0.7"/>
+  <path d="M42 80C55 87 67 88 80 80C67 72 55 73 42 80Z" fill="#F8FFE9" opacity="0.7"/>
+
+  <circle cx="80" cy="80" r="14" fill="url(#core)" stroke="url(#rim)" stroke-width="2.5" filter="url(#glow)"/>
+  <path d="M80 68C87 74 87 86 80 92C73 86 73 74 80 68Z" fill="#FEFFF2"/>
+  <circle cx="80" cy="80" r="4" fill="#5A925D"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 720" fill="none">
+  <defs>
+    <linearGradient id="vine" x1="20" y1="680" x2="162" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F895E"/>
+      <stop offset="0.52" stop-color="#78C47C"/>
+      <stop offset="1" stop-color="#A7E5A0"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#E9F8D8"/>
+      <stop offset="0.55" stop-color="#83C982"/>
+      <stop offset="1" stop-color="#3E7651"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F0DE9F"/>
+      <stop offset="0.55" stop-color="#C6A45F"/>
+      <stop offset="1" stop-color="#8E6F38"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <path d="M150 4C156 86 111 134 123 210C136 292 84 343 91 422C98 500 45 565 29 716" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" opacity="0.42"/>
+  <path d="M150 4C156 86 111 134 123 210C136 292 84 343 91 422C98 500 45 565 29 716" stroke="url(#vine)" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M124 196C95 180 77 154 76 121C105 131 124 153 124 196Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.5"/>
+  <path d="M117 263C147 252 163 229 169 201C139 207 120 230 117 263Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.5"/>
+  <path d="M94 409C62 394 48 368 48 337C78 347 96 373 94 409Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.5"/>
+  <path d="M79 488C111 476 132 449 136 417C105 426 84 451 79 488Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.5"/>
+  <path d="M48 611C24 591 16 568 20 543C45 556 57 580 48 611Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.5"/>
+
+  <path d="M126 106C102 90 87 69 87 43" stroke="url(#vine)" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M87 43C83 26 93 16 108 14C108 30 101 41 87 43Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.2"/>
+  <path d="M96 357C122 345 143 324 150 298" stroke="url(#vine)" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M150 298C159 282 174 282 178 286C176 301 166 308 150 298Z" fill="url(#leaf)" stroke="#D8C17B" stroke-width="1.2"/>
+  <path d="M57 560C82 550 100 532 107 508" stroke="url(#vine)" stroke-width="1.8" stroke-linecap="round"/>
+
+  <g transform="translate(119 151)" filter="url(#glow)">
+    <path d="M0 0C-12-22-30-16-24 0C-30 16-12 22 0 0Z" fill="#F8FFE9" stroke="#7BCF78" stroke-width="2"/>
+    <path d="M0 0C12-22 30-16 24 0C30 16 12 22 0 0Z" fill="#F8FFE9" stroke="#7BCF78" stroke-width="2"/>
+    <circle r="4.5" fill="url(#gold)"/>
+  </g>
+  <g transform="translate(88 422) scale(.72)" filter="url(#glow)">
+    <path d="M0 0C-12-22-30-16-24 0C-30 16-12 22 0 0Z" fill="#F8FFE9" stroke="#7BCF78" stroke-width="2"/>
+    <path d="M0 0C12-22 30-16 24 0C30 16 12 22 0 0Z" fill="#F8FFE9" stroke="#7BCF78" stroke-width="2"/>
+    <circle r="4.5" fill="url(#gold)"/>
+  </g>
+
+  <g fill="url(#gold)" opacity="0.86">
+    <path d="M57 265L61 274L70 278L61 282L57 291L53 282L44 278L53 274Z"/>
+    <path d="M132 356L135 363L142 366L135 369L132 376L129 369L122 366L129 363Z"/>
+    <path d="M25 482L28 489L35 492L28 495L25 502L22 495L15 492L22 489Z"/>
+    <path d="M69 648L72 655L79 658L72 661L69 668L66 661L59 658L66 655Z"/>
+  </g>
+  <path d="M64 330C40 316 35 294 45 279C55 264 77 267 84 282C91 297 80 308 70 303C60 298 62 288 69 286" stroke="#C8A75F" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
+  <path d="M52 532C28 520 24 499 33 485C42 472 62 473 70 487C77 501 68 514 57 510" stroke="#C8A75F" stroke-width="1.6" stroke-linecap="round" opacity="0.62"/>
+</svg>

@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-laptop-minimal-4a8ad2517fa02989.js";e();export{t as default};

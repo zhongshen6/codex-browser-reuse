@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-sailboat-9e5b73fe44b19896.js";e();export{t as default};

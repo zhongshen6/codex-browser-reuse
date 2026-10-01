@@ -1,0 +1,1 @@
+import{n as e,t}from"./image-minus-C52kmrdt-cd2bd8f0778d.js";e();export{t as default};

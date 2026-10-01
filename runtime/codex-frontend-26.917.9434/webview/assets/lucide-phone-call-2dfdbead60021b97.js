@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-phone-call-e7f2cafb073a9826.js";e();export{t as default};

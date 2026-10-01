@@ -1,0 +1,1 @@
+import{n as e,t}from"./cat-Bc_CuLFx-87664b1966db.js";e();export{t as default};

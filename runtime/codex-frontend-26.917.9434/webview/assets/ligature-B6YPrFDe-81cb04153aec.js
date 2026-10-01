@@ -1,0 +1,1 @@
+import{n as e,t}from"./ligature-B6YPrFDe-ded3bffc2336.js";e();export{t as default};

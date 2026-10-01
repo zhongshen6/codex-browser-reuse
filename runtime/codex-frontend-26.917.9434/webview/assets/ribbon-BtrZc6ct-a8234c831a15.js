@@ -1,0 +1,1 @@
+import{n as e,t}from"./ribbon-BtrZc6ct-555de8b956ab.js";e();export{t as default};

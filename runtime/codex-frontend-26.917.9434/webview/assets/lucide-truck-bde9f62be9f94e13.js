@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-truck-5dee98a3b56105ae.js";e();export{t as default};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./utensils-CgfesbJI-167af9c61821.js";t();export{e as default};

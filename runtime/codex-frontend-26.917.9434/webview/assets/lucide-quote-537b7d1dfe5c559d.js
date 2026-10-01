@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-quote-330ef4cff20cb13e.js";e();export{t as default};

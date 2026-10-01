@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{n as t,t as n}from"./ice-cream-bowl-B2k7AmDl-84983bd869f0.js";function r(){return(r=e((()=>{t()})))()}r();export{n as default};
+//# sourceMappingURL=ice-cream-2-B9Nk7DaC-6c7bc69cdd92.js.map

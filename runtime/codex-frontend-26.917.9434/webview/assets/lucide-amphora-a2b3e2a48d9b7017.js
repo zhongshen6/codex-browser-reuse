@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-amphora-e032b6a411f5f99e.js";e();export{t as default};

@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{n as e,t}from"./favorite-action-7e3bec44a08c.js";e();export{t as ProductFavoriteAction};

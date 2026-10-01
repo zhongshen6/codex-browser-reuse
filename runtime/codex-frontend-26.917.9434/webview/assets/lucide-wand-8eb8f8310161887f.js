@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-wand-862e572b130af82b.js";e();export{t as default};

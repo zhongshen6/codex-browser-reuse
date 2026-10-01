@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{Bst as e,Vst as t}from"./app-initial-fc9a33fdda88.js";e();export{t as openTextFileEditorSidePanelTab};

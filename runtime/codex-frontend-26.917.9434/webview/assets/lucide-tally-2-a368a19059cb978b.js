@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-tally-2-acd7449125a0fff9.js";e();export{t as default};

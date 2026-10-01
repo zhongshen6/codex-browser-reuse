@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./details-cache-4a77f5872e3d.js";e();export{t as prefetchProductDetails};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-briefcase-business-364ba751c45c9b42.js";e();export{t as default};

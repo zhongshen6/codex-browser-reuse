@@ -1,0 +1,1 @@
+import{r as e,t}from"./composer-state-b73b602a34dd.js";t();export{e as submitWithBrowserSkills};

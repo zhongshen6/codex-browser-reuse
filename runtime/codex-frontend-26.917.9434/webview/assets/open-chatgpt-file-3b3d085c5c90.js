@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{DR as e,OR as t}from"./app-initial-fc9a33fdda88.js";e();export{t as openChatGptFile};

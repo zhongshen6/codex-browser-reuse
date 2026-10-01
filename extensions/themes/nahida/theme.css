@@ -1,0 +1,1105 @@
+/* Nahida atmosphere layer for the Codex desktop app. */
+
+html[data-zha-theme="nahida"],
+html[data-zha-theme="nahida"] .app-theme.electron-light {
+  color-scheme: light;
+
+  --nhd-bg-base: #f2f7ef;
+  --nhd-bg-main: #f9fcf7;
+  --nhd-surface: rgba(255, 255, 255, 0.72);
+  --nhd-surface-strong: rgba(252, 255, 250, 0.94);
+  --nhd-surface-muted: rgba(237, 246, 234, 0.84);
+  --nhd-text: #263d31;
+  --nhd-text-soft: #557061;
+  --nhd-text-muted: #789083;
+  --nhd-green: #78ad70;
+  --nhd-green-deep: #4c7b59;
+  --nhd-mint: #72dca3;
+  --nhd-gold: #c2a35f;
+  --nhd-violet: #afa7cf;
+  --nhd-border: rgba(89, 139, 91, 0.22);
+  --nhd-border-strong: rgba(78, 132, 84, 0.38);
+  --nhd-gold-line: rgba(188, 153, 77, 0.28);
+  --nhd-shadow-soft: 0 8px 28px rgba(69, 113, 75, 0.10);
+  --nhd-shadow-raised: 0 14px 38px rgba(53, 91, 62, 0.15);
+  --nhd-glow: 0 0 0 3px rgba(114, 220, 163, 0.16), 0 10px 30px rgba(78, 132, 84, 0.14);
+  --nhd-radius-control: 8px;
+  --nhd-radius-row: 10px;
+  --nhd-radius-panel: 14px;
+  --nhd-radius-composer: 18px;
+
+  /* Codex design tokens */
+  --color-token-bg-primary: #eef5ec;
+  --color-token-main-surface-primary: #f9fcf7;
+  --color-token-side-bar-background: #f1f7ef;
+  --color-token-dropdown-background: rgba(252, 255, 250, 0.96);
+  --color-token-input-background: rgba(255, 255, 255, 0.88);
+  --color-token-foreground: var(--nhd-text);
+  --color-token-icon-foreground: #476151;
+  --color-token-text-primary: var(--nhd-text);
+  --color-token-text-secondary: rgba(38, 61, 49, 0.72);
+  --color-token-text-tertiary: rgba(38, 61, 49, 0.53);
+  --color-token-text-preformat-foreground: #2d4b39;
+  --color-token-border: var(--nhd-border);
+  --color-token-border-default: var(--nhd-border);
+  --color-token-input-border: rgba(89, 139, 91, 0.30);
+  --color-token-focus-border: #69bd82;
+  --color-token-list-hover-background: rgba(111, 166, 105, 0.10);
+  --color-token-list-active-selection-background: rgba(111, 166, 105, 0.16);
+  --color-token-toolbar-hover-background: rgba(111, 166, 105, 0.11);
+  --color-token-badge-background: rgba(194, 163, 95, 0.13);
+  --color-token-bg-fog: rgba(62, 101, 69, 0.045);
+  --color-token-link: #477f59;
+  --color-token-text-link-active-foreground: #356d4a;
+  --color-background-accent: #e3f3df;
+  --color-background-accent-active: #d9eed5;
+  --color-background-elevated-primary-opaque: #fcfffa;
+  --color-text-accent: #477f59;
+
+  /* Embedded terminal and editor surfaces */
+  --vscode-editor-background: #f9fcf7;
+  --vscode-terminal-background: #f7fbf5;
+  --vscode-terminal-foreground: #294334;
+  --vscode-panel-background: #f7fbf5;
+  --vscode-panel-border: rgba(89, 139, 91, 0.20);
+  --vscode-focusBorder: #69bd82;
+  --vscode-input-background: rgba(255, 255, 255, 0.82);
+  --vscode-input-border: rgba(89, 139, 91, 0.28);
+  --vscode-editorWidget-background: rgba(252, 255, 250, 0.97);
+  --vscode-dropdown-background: rgba(252, 255, 250, 0.97);
+  --vscode-menu-background: rgba(252, 255, 250, 0.97);
+  --vscode-list-hoverBackground: rgba(111, 166, 105, 0.10);
+  --vscode-list-activeSelectionBackground: rgba(111, 166, 105, 0.16);
+  --vscode-textLink-foreground: #477f59;
+  --vscode-scrollbarSlider-background: rgba(83, 126, 89, 0.16);
+  --vscode-scrollbarSlider-hoverBackground: rgba(83, 126, 89, 0.27);
+}
+
+html[data-zha-theme="nahida"] body {
+  color: var(--nhd-text);
+  background-color: var(--nhd-bg-base);
+  background-image:
+    radial-gradient(ellipse 76% 56% at 7% 3%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.62) 38%, transparent 72%),
+    radial-gradient(ellipse 58% 44% at 92% 96%, rgba(123, 183, 115, 0.17) 0%, rgba(123, 183, 115, 0.05) 44%, transparent 74%),
+    radial-gradient(ellipse 44% 34% at 88% 8%, rgba(175, 167, 207, 0.09) 0%, transparent 72%),
+    linear-gradient(135deg, #f8fbf5 0%, #eef6ec 55%, #f8f8fb 100%);
+  background-attachment: scroll;
+}
+
+html[data-zha-theme="nahida"][data-zha-scroll-active="true"] #zha-nahida-ambient :where(.nhd-particle, .nhd-bubble) {
+  animation-play-state: paused !important;
+}
+
+html[data-zha-theme="nahida"] #root {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient {
+  position: fixed;
+  z-index: -1;
+  inset: 36px 0 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+html[data-zha-theme="nahida"] main {
+  background-color: rgba(249, 252, 247, 0.72) !important;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel {
+  background-color: rgba(242, 247, 239, 0.80) !important;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle {
+  position: absolute;
+  left: var(--particle-x);
+  top: var(--particle-y);
+  width: var(--particle-size);
+  height: var(--particle-size);
+  opacity: 0;
+  animation: nhd-particle-drift var(--particle-duration) ease-in-out var(--particle-delay) infinite;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle--seed {
+  height: calc(var(--particle-size) * 1.65);
+  border-radius: 78% 22% 72% 28%;
+  background: linear-gradient(145deg, rgba(221, 241, 215, 0.90), rgba(92, 154, 99, 0.78));
+  border: 1px solid rgba(194, 163, 95, 0.42);
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle--spark {
+  background: rgba(194, 163, 95, 0.72);
+  clip-path: polygon(50% 0%, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0% 50%, 41% 41%);
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle--diamond {
+  border: 1px solid rgba(91, 148, 94, 0.58);
+  background: rgba(252, 255, 250, 0.42);
+  transform: rotate(45deg);
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-bubble {
+  position: absolute;
+  left: var(--bubble-x);
+  top: var(--bubble-y);
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  pointer-events: none;
+  transform: translate3d(var(--bubble-push-x, 0px), var(--bubble-push-y, 0px), 0);
+  transition: transform 170ms cubic-bezier(0.2, 0.78, 0.28, 1);
+  border: 1px solid rgba(83, 163, 106, 0.82);
+  border-radius: 50%;
+  opacity: var(--bubble-opacity);
+  background:
+    radial-gradient(circle at 29% 24%, rgba(255, 255, 255, 0.96) 0 7%, transparent 8%),
+    radial-gradient(circle at 34% 29%, rgba(238, 255, 224, 0.68), transparent 31%),
+    radial-gradient(circle at 70% 72%, rgba(175, 167, 207, 0.40), transparent 44%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(114, 220, 163, 0.34));
+  animation: nhd-bubble-float var(--bubble-duration) ease-in-out var(--bubble-delay) infinite;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-bubble::before {
+  content: "";
+  position: absolute;
+  top: 18%;
+  left: 18%;
+  width: 28%;
+  height: 14%;
+  border-top: 2px solid rgba(255, 255, 255, 0.88);
+  border-radius: 50%;
+  transform: rotate(-34deg);
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-bubble::after {
+  content: "";
+  position: absolute;
+  right: 15%;
+  bottom: 13%;
+  width: 22%;
+  height: 22%;
+  border-right: 1px solid rgba(194, 163, 95, 0.42);
+  border-bottom: 1px solid rgba(194, 163, 95, 0.34);
+  border-radius: 50%;
+}
+
+@keyframes nhd-particle-drift {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) rotate(var(--particle-rotation));
+  }
+  22% {
+    opacity: var(--particle-opacity);
+  }
+  56% {
+    opacity: var(--particle-opacity);
+    transform: translate3d(var(--particle-drift-x), -10px, 0) rotate(calc(var(--particle-rotation) + 18deg));
+  }
+  84% {
+    opacity: var(--particle-opacity);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--particle-drift-end), -32px, 0) rotate(calc(var(--particle-rotation) + 34deg));
+  }
+}
+
+@keyframes nhd-bubble-float {
+  0%, 100% {
+    translate: 0 6px;
+  }
+  50% {
+    translate: var(--bubble-drift) -10px;
+  }
+}
+
+@keyframes nhd-emblem-breathe {
+  0%, 100% {
+    opacity: 0.72;
+    transform: translateX(-50%) scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.04);
+  }
+}
+
+html[data-zha-theme="nahida"] ::selection {
+  color: #1f3529;
+  background: rgba(114, 220, 163, 0.32);
+}
+
+html[data-zha-theme="nahida"] :where(a) {
+  color: #477f59;
+  text-decoration-color: rgba(71, 127, 89, 0.34);
+}
+
+html[data-zha-theme="nahida"] :where(button, [role="button"], a, input, textarea, [contenteditable="true"]):focus-visible {
+  outline-color: rgba(79, 157, 103, 0.72);
+  outline-offset: 2px;
+}
+
+/* Native icon treatment */
+html[data-zha-theme="nahida"] aside.app-shell-left-panel :where(button, [role="button"]) svg,
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar] :where(button, [role="button"]) svg,
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside :where(button, [role="button"]) svg,
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:not(.bg-token-foreground):not(.bg-composer-primary) svg,
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button svg {
+  filter: none;
+  transform-origin: center;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel :where(button, [role="button"]):hover svg,
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar] :where(button, [role="button"]):hover svg,
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside :where(button, [role="button"]):hover svg,
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:not(.bg-token-foreground):not(.bg-composer-primary):hover svg,
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button:hover svg {
+  filter: drop-shadow(0 0 5px rgba(114, 220, 163, 0.24));
+  transform: translateY(-0.5px) scale(1.02);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [aria-current="page"] svg {
+  color: var(--nhd-green-deep);
+  filter: drop-shadow(0 0 6px rgba(114, 220, 163, 0.30));
+}
+
+html[data-zha-theme="nahida"] button[aria-label^="\590d\5236"] svg,
+html[data-zha-theme="nahida"] button[aria-label="\5df2\590d\5236"] svg {
+  color: var(--nhd-green-deep);
+  filter: drop-shadow(0 0 4px rgba(114, 220, 163, 0.22));
+  transition: color 160ms ease, filter 160ms ease, transform 160ms ease;
+}
+
+html[data-zha-theme="nahida"] button[aria-label^="\590d\5236"]:hover svg,
+html[data-zha-theme="nahida"] button[aria-label="\5df2\590d\5236"] svg {
+  color: var(--nhd-green-main);
+  filter: drop-shadow(0 0 7px rgba(78, 240, 157, 0.34));
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button[aria-label="\53d1\9001"] svg {
+  color: #ffffff !important;
+  filter: drop-shadow(0 0 5px rgba(232, 255, 238, 0.42));
+}
+
+/* App shell */
+html[data-zha-theme="nahida"] aside.app-shell-left-panel {
+  background:
+    url("__NHD_VINE_DATA__") calc(100% + 26px) 92px / 132px 528px no-repeat,
+    linear-gradient(180deg, rgba(252, 255, 250, 0.90), rgba(235, 245, 232, 0.90)),
+    var(--nhd-bg-base);
+  border-right: 1px solid var(--nhd-border);
+  border-top-right-radius: var(--nhd-radius-panel);
+  box-shadow: 8px 0 28px rgba(67, 107, 72, 0.06);
+  backdrop-filter: blur(14px) saturate(112%);
+  -webkit-backdrop-filter: blur(14px) saturate(112%);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  width: 74px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(194, 163, 95, 0.44), rgba(114, 220, 163, 0.50));
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: -7px;
+  bottom: 12px;
+  width: 14px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(247, 255, 233, 0.96) 0 2px, rgba(103, 180, 112, 0.78) 2.5px 3.5px, rgba(194, 163, 95, 0.70) 4px, transparent 5px),
+    radial-gradient(circle at 50% 48%, rgba(247, 255, 233, 0.96) 0 2px, rgba(103, 180, 112, 0.78) 2.5px 3.5px, rgba(194, 163, 95, 0.70) 4px, transparent 5px),
+    radial-gradient(circle at 50% 78%, rgba(247, 255, 233, 0.96) 0 2px, rgba(103, 180, 112, 0.78) 2.5px 3.5px, rgba(194, 163, 95, 0.70) 4px, transparent 5px),
+    linear-gradient(180deg, transparent, rgba(194, 163, 95, 0.48) 16%, rgba(114, 220, 163, 0.70) 47%, rgba(91, 148, 94, 0.44) 76%, transparent) center / 2px 100% no-repeat;
+  box-shadow: 0 0 9px rgba(114, 220, 163, 0.14);
+  animation: nhd-edge-breathe 6s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel nav {
+  background: transparent;
+}
+
+html[data-zha-theme="nahida"] button:has(> .text-token-charts-purple) .text-token-charts-purple {
+  color: var(--nhd-green-deep);
+  text-shadow: 0 0 12px rgba(114, 220, 163, 0.20);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel :where(button, [role="button"]) {
+  border-radius: var(--nhd-radius-row);
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel :where(button, [role="button"]):hover {
+  background-color: rgba(111, 166, 105, 0.10);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [aria-current="page"] {
+  position: relative;
+  color: #294735;
+  background: linear-gradient(100deg, rgba(223, 241, 218, 0.94), rgba(250, 253, 248, 0.82)) !important;
+  border: 1px solid rgba(103, 158, 101, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 5px 14px rgba(76, 123, 89, 0.08);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  width: 4px;
+  height: 17px;
+  border-radius: 5px 1px 5px 1px;
+  background: linear-gradient(180deg, var(--nhd-mint), var(--nhd-green-deep));
+  box-shadow: 0 0 9px rgba(114, 220, 163, 0.38);
+  transform: translateY(-50%);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [data-zha-section-label] {
+  position: relative;
+  overflow: visible;
+  padding-left: 14px;
+  color: rgba(62, 104, 72, 0.78);
+  letter-spacing: 0;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [data-zha-section-label]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 11px;
+  border: 1px solid rgba(194, 163, 95, 0.56);
+  border-radius: 82% 18% 74% 26%;
+  background: linear-gradient(145deg, rgba(241, 255, 224, 0.96), rgba(105, 178, 109, 0.82));
+  box-shadow: 0 0 7px rgba(114, 220, 163, 0.26);
+  transform: translateY(-50%) rotate(34deg);
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [data-zha-section-label]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 8px);
+  width: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(194, 163, 95, 0.48), rgba(114, 220, 163, 0.30), transparent);
+}
+
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar] {
+  background: rgba(249, 252, 247, 0.82) !important;
+  border-bottom: 1px solid rgba(89, 139, 91, 0.16);
+  border-top-left-radius: var(--nhd-radius-panel);
+  box-shadow: 0 4px 18px rgba(65, 104, 70, 0.055);
+  backdrop-filter: blur(16px) saturate(118%);
+  -webkit-backdrop-filter: blur(16px) saturate(118%);
+}
+
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar]::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  background: url("__NHD_EMBLEM_HEADER_DATA__") center / contain no-repeat;
+  filter: drop-shadow(0 0 5px rgba(114, 220, 163, 0.20));
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: nhd-emblem-breathe 6.8s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 18px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(114, 220, 163, 0.46), rgba(194, 163, 95, 0.34) 35%, rgba(91, 148, 94, 0.18) 72%, transparent);
+  background-size: 180% 100%;
+  animation: nhd-edge-flow 10s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar] :where(button, [role="button"]) {
+  border-radius: var(--nhd-radius-control);
+  transition: background-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+}
+
+html[data-zha-theme="nahida"] header[data-app-shell-application-menu-bar] :where(button, [role="button"]):hover {
+  background: rgba(111, 166, 105, 0.11);
+  box-shadow: inset 0 0 0 1px rgba(89, 139, 91, 0.13);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] {
+  color: var(--nhd-text);
+  border-radius: var(--nhd-radius-panel) 0 0 0;
+  background:
+    url("__NHD_EMBLEM_DATA__") calc(100% - 16px) 76px / 92px 92px no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.40), rgba(247, 251, 245, 0.56)),
+    transparent;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.72), inset 0 1px 0 rgba(89, 139, 91, 0.12);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface]::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 18px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(114, 220, 163, 0.36), rgba(194, 163, 95, 0.24), transparent 74%);
+}
+
+html[data-zha-theme="nahida"] [data-zha-chat-pane] {
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-sticker {
+  position: absolute;
+  z-index: 1;
+  left: var(--zha-sticker-left, 0px);
+  bottom: var(--zha-sticker-bottom, 0px);
+  width: var(--zha-sticker-size, 0px);
+  height: var(--zha-sticker-size, 0px);
+  pointer-events: none;
+  pointer-events: none;
+  background-image: var(--zha-sticker-image, none);
+  background-position: left bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 8px 14px rgba(64, 104, 69, 0.12));
+  opacity: 0.88;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+html[data-zha-theme="nahida"] #zha-nahida-sticker[data-zha-sticker-visible="false"] {
+  visibility: hidden;
+  opacity: 0;
+}
+
+html[data-zha-theme="nahida"] [data-zha-chat-pane]::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 0 0 0 var(--nhd-radius-panel);
+  background:
+    url("__NHD_CORNER_TL_DATA__") left 10px top 62px / clamp(108px, 8.5vw, 148px) clamp(108px, 8.5vw, 148px) no-repeat,
+    url("__NHD_CORNER_BR_DATA__") right var(--zha-corner-right-offset, 0px) top var(--zha-corner-top-offset, calc(100% - 212px)) / var(--zha-corner-size, 98px) var(--zha-corner-size, 98px) no-repeat;
+}
+
+html[data-zha-theme="nahida"] [data-zha-chat-pane][data-zha-chat-narrow]::after {
+  background-position:
+    left -4px top 8px,
+    right var(--zha-corner-right-offset, 0px) top var(--zha-corner-top-offset, calc(100% - 212px));
+  background-size:
+    108px 108px,
+    var(--zha-corner-size, 98px) var(--zha-corner-size, 98px);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] > div {
+  border-color: rgba(89, 139, 91, 0.14);
+}
+
+/* Right-side tools */
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside {
+  position: relative;
+  background:
+    url("__NHD_EMBLEM_DATA__") right 16px bottom 20px / 70px 70px no-repeat,
+    rgba(251, 254, 249, 0.76);
+  border-left: 1px solid rgba(89, 139, 91, 0.18);
+  border-radius: var(--nhd-radius-panel) 0 0 var(--nhd-radius-panel);
+  box-shadow: -8px 0 28px rgba(67, 107, 72, 0.055);
+  backdrop-filter: blur(14px) saturate(112%);
+  -webkit-backdrop-filter: blur(14px) saturate(112%);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  bottom: 16px;
+  left: -1px;
+  width: 2px;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(114, 220, 163, 0.50) 32%, rgba(194, 163, 95, 0.30) 68%, transparent);
+  box-shadow: 0 0 8px rgba(114, 220, 163, 0.13);
+}
+
+html[data-zha-theme="nahida"] [data-zha-tool-panel] {
+  border: 1px solid rgba(91, 148, 94, 0.30) !important;
+  background-image: url("__NHD_EMBLEM_PANEL_DATA__") !important;
+  background-position: right 18px top 42px !important;
+  background-size: 52px 52px !important;
+  background-repeat: no-repeat !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 14px 36px rgba(55, 94, 62, 0.15),
+    0 0 0 1px rgba(114, 220, 163, 0.06) !important;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside header {
+  color: var(--nhd-text-soft);
+  background: rgba(245, 250, 242, 0.80) !important;
+  border-bottom: 1px solid rgba(89, 139, 91, 0.13);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] aside :where(button, [role="button"]):hover {
+  background: rgba(111, 166, 105, 0.10);
+}
+
+/* Conversation */
+html[data-zha-theme="nahida"] [data-user-message-bubble="true"] {
+  color: #294735;
+  background: #e5f4e1 !important;
+  border: 1px solid rgba(100, 154, 99, 0.24);
+  border-radius: 16px 7px 16px 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] :where(blockquote) {
+  margin-left: 0;
+  padding: 8px 14px;
+  color: var(--nhd-text-soft);
+  background: rgba(239, 247, 236, 0.58);
+  border-left: 3px solid rgba(194, 163, 95, 0.62);
+  border-radius: 3px var(--nhd-radius-row) var(--nhd-radius-row) 3px;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] :where(hr) {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--nhd-gold-line) 28%, rgba(96, 151, 98, 0.25) 50%, var(--nhd-gold-line) 72%, transparent);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] :where(pre) {
+  background: linear-gradient(145deg, rgba(243, 249, 240, 0.96), rgba(250, 252, 249, 0.98)) !important;
+  border: 1px solid rgba(89, 139, 91, 0.18);
+  border-radius: var(--nhd-radius-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.90), 0 7px 20px rgba(66, 105, 70, 0.06);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] {
+  isolation: isolate;
+  background: linear-gradient(145deg, rgba(247, 252, 244, 0.97), rgba(252, 254, 251, 0.98)) !important;
+  border: 1px solid rgba(91, 148, 94, 0.28);
+  border-radius: var(--nhd-radius-panel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.94), 0 7px 20px rgba(61, 101, 68, 0.07);
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"]::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  width: 68px;
+  height: 68px;
+  pointer-events: none;
+  background: url("__NHD_CORNER_BR_DATA__") right bottom / contain no-repeat;
+  opacity: 0.46;
+  transition: opacity 180ms ease, filter 180ms ease;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"]:where(:hover, :focus-within)::after {
+  opacity: 0.82;
+  filter: drop-shadow(0 0 6px rgba(114, 220, 163, 0.20));
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"]:where(:hover, :focus-within) {
+  border-color: rgba(84, 166, 108, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 0 0 1px rgba(114, 220, 163, 0.13),
+    0 0 22px rgba(114, 220, 163, 0.17),
+    0 10px 28px rgba(56, 96, 64, 0.12);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] > [data-markdown-copy="exclude"] {
+  color: rgba(45, 73, 56, 0.72);
+  background: linear-gradient(90deg, rgba(226, 241, 221, 0.72), rgba(251, 253, 249, 0.48));
+  border-bottom: 1px solid rgba(91, 148, 94, 0.16);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] > [data-markdown-copy="exclude"] + div {
+  background: rgba(252, 255, 250, 0.42);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button {
+  border-radius: var(--nhd-radius-control);
+  transition: color 140ms ease, background-color 140ms ease, box-shadow 140ms ease, transform 120ms ease;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button:hover {
+  color: var(--nhd-green-deep);
+  background: rgba(111, 166, 105, 0.13);
+  box-shadow: 0 0 0 1px rgba(89, 139, 91, 0.12), 0 4px 12px rgba(65, 107, 73, 0.09);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button:active {
+  transform: scale(0.92);
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"] button[data-zha-copy-feedback="active"] {
+  animation: nhd-copy-feedback 680ms cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+@supports (-webkit-mask-composite: xor) {
+  html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"]::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    padding: 1px;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(110deg, rgba(194, 163, 95, 0.30), rgba(114, 220, 163, 0.66), rgba(91, 148, 94, 0.24), rgba(194, 163, 95, 0.30));
+    background-size: 240% 100%;
+    opacity: 0.48;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    transition: opacity 180ms ease;
+  }
+
+  html[data-zha-theme="nahida"] main[data-app-shell-main-surface] [data-markdown-copy="code-block"]:where(:hover, :focus-within)::before {
+    opacity: 0.96;
+    animation: nhd-code-border-flow 2.8s ease-in-out infinite;
+  }
+}
+
+@keyframes nhd-code-border-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes nhd-copy-feedback {
+  0% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(114, 220, 163, 0);
+  }
+  42% {
+    transform: scale(1.06);
+    color: var(--nhd-green-deep);
+    background: rgba(219, 241, 215, 0.92);
+    box-shadow: 0 0 0 4px rgba(114, 220, 163, 0.19), 0 0 18px rgba(114, 220, 163, 0.24);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(114, 220, 163, 0);
+  }
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] :where(code:not(pre code)) {
+  color: #355f43;
+  background: rgba(218, 237, 214, 0.62);
+  border: 1px solid rgba(89, 139, 91, 0.13);
+  border-radius: 5px;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] :where(kbd) {
+  color: #526454;
+  background: rgba(255, 253, 246, 0.88);
+  border-color: rgba(194, 163, 95, 0.30);
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(155, 128, 67, 0.16);
+}
+
+/* Running activity */
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] button:has(.loading-shimmer-pure-text) {
+  border-radius: var(--nhd-radius-control);
+  background: linear-gradient(90deg, rgba(114, 220, 163, 0.10), rgba(114, 220, 163, 0.025) 56%, transparent 82%);
+  box-shadow: inset 2px 0 0 rgba(91, 166, 105, 0.48);
+  animation: nhd-running-activity 2.5s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] main[data-app-shell-main-surface] button:has(.loading-shimmer-pure-text) svg {
+  color: var(--nhd-green-deep);
+  filter: drop-shadow(0 0 5px rgba(114, 220, 163, 0.32));
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [data-app-action-sidebar-thread-active="true"]:has(.animate-spin) {
+  animation: nhd-running-sidebar 2.5s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] aside.app-shell-left-panel [data-app-action-sidebar-thread-active="true"] .animate-spin {
+  color: var(--nhd-green-deep);
+  filter: drop-shadow(0 0 5px rgba(114, 220, 163, 0.34));
+}
+
+@keyframes nhd-running-activity {
+  0%, 100% {
+    box-shadow: inset 2px 0 0 rgba(91, 166, 105, 0.44), 0 0 0 rgba(114, 220, 163, 0);
+  }
+  50% {
+    box-shadow: inset 3px 0 0 rgba(114, 220, 163, 0.72), 0 0 18px rgba(114, 220, 163, 0.12);
+  }
+}
+
+@keyframes nhd-running-sidebar {
+  0%, 100% {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 5px 14px rgba(76, 123, 89, 0.08);
+  }
+  50% {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.96), 0 0 0 2px rgba(114, 220, 163, 0.13), 0 0 17px rgba(114, 220, 163, 0.16);
+  }
+}
+
+/* Composer */
+html[data-zha-theme="nahida"] [data-composer-surface-variant] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    url("__NHD_FILIGREE_STRONG_DATA__") right 12px top 3px / min(76%, 360px) 58px no-repeat,
+    linear-gradient(145deg, rgba(255, 255, 255, 0.91), rgba(242, 249, 239, 0.86)) !important;
+  border: 1px solid var(--nhd-border-strong);
+  border-radius: var(--nhd-radius-composer);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.98), var(--nhd-shadow-soft);
+  backdrop-filter: blur(18px) saturate(118%);
+  -webkit-backdrop-filter: blur(18px) saturate(118%);
+  transition: border-color 170ms ease, box-shadow 170ms ease, background-color 170ms ease;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant]::after {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.62;
+  background:
+    linear-gradient(90deg, rgba(194, 163, 95, 0.62), transparent) top left / 54px 1px no-repeat,
+    linear-gradient(180deg, rgba(194, 163, 95, 0.48), transparent) top left / 1px 32px no-repeat,
+    linear-gradient(270deg, rgba(114, 220, 163, 0.58), transparent) bottom right / 64px 1px no-repeat,
+    linear-gradient(0deg, rgba(114, 220, 163, 0.42), transparent) bottom right / 1px 36px no-repeat;
+  transition: opacity 180ms ease, filter 180ms ease;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant]:focus-within {
+  border-color: rgba(84, 166, 108, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), var(--nhd-glow);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant]:focus-within::after {
+  opacity: 0.94;
+  filter: drop-shadow(0 0 6px rgba(114, 220, 163, 0.24));
+  animation: nhd-composer-corners 3.2s ease-in-out infinite;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] .ProseMirror {
+  color: var(--nhd-text);
+  background: transparent !important;
+  caret-color: var(--nhd-green-deep);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] .ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--nhd-text-muted);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button {
+  color: var(--nhd-text-soft);
+  border-radius: var(--nhd-radius-control);
+  transition: background-color 140ms ease, color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:hover:not(:disabled) {
+  color: var(--nhd-green-deep);
+  background: rgba(111, 166, 105, 0.12);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] [data-codex-intelligence-trigger] [data-max-effort="true"] {
+  color: var(--nhd-gold) !important;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:is(.bg-token-foreground, .bg-composer-primary) {
+  color: #ffffff;
+  background: linear-gradient(145deg, #78b879, #4e8761) !important;
+  border-radius: 50%;
+  box-shadow: 0 5px 14px rgba(69, 124, 82, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:is(.bg-token-foreground, .bg-composer-primary) svg {
+  color: #ffffff !important;
+  fill: currentColor;
+  filter: drop-shadow(0 0 5px rgba(232, 255, 238, 0.34));
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:is(.bg-token-foreground, .bg-composer-primary):hover:not(:disabled) {
+  color: #ffffff;
+  background: linear-gradient(145deg, #83c784, #4c815d) !important;
+  box-shadow: 0 0 0 3px rgba(114, 220, 163, 0.15), 0 7px 18px rgba(69, 124, 82, 0.28);
+  transform: translateY(-1px);
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button:is(.bg-token-foreground, .bg-composer-primary):disabled {
+  color: rgba(250, 255, 248, 0.92);
+  background: linear-gradient(145deg, #aac7aa, #7f9f87) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 3px 9px rgba(69, 104, 76, 0.14);
+  opacity: 0.62 !important;
+}
+
+html[data-zha-theme="nahida"] [data-composer-surface-variant] button.bg-composer-primary:is([aria-label="Stop"], [aria-label="\505c\6b62"]) {
+  background: linear-gradient(145deg, #5f976b, #386648) !important;
+  box-shadow: 0 5px 14px rgba(48, 99, 65, 0.27), inset 0 1px 0 rgba(255, 255, 255, 0.30);
+}
+
+/* Menus, dialogs, and standard controls */
+html[data-zha-theme="nahida"] [data-radix-popper-content-wrapper] > *,
+html[data-zha-theme="nahida"] :where([role="dialog"], [role="menu"], [role="listbox"]) {
+  color: var(--nhd-text);
+  background: rgba(252, 255, 250, 0.95) !important;
+  border: 1px solid rgba(89, 139, 91, 0.21);
+  border-radius: var(--nhd-radius-panel);
+  box-shadow: var(--nhd-shadow-raised);
+  backdrop-filter: blur(18px) saturate(116%);
+  -webkit-backdrop-filter: blur(18px) saturate(116%);
+}
+
+html[data-zha-theme="nahida"] :where([role="dialog"], [role="menu"]) [role="listbox"] {
+  background: transparent !important;
+  border: 0;
+  border-radius: var(--nhd-radius-row);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-zha-theme="nahida"] [role="dialog"][data-state="open"],
+html[data-zha-theme="nahida"] [role="menu"][data-state="open"],
+html[data-zha-theme="nahida"] [data-radix-popper-content-wrapper] > [data-state="open"] {
+  transform-origin: var(--radix-popover-content-transform-origin, center);
+  animation: nhd-surface-enter 170ms cubic-bezier(0.2, 0.78, 0.28, 1) both;
+}
+
+@keyframes nhd-surface-enter {
+  from {
+    opacity: 0;
+    translate: 0 5px;
+    scale: 0.985;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+html[data-zha-theme="nahida"] :where([role="menuitem"], [role="option"])[data-highlighted],
+html[data-zha-theme="nahida"] :where([role="menuitem"], [role="option"]):hover {
+  color: var(--nhd-text);
+  background: rgba(111, 166, 105, 0.12);
+  border-radius: var(--nhd-radius-control);
+}
+
+html[data-zha-theme="nahida"] [role="tooltip"] {
+  color: #2d4938;
+  background: rgba(249, 253, 247, 0.96) !important;
+  border: 1px solid rgba(89, 139, 91, 0.24);
+  border-radius: 9px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 9px 26px rgba(49, 82, 56, 0.14);
+  backdrop-filter: blur(16px) saturate(112%);
+  -webkit-backdrop-filter: blur(16px) saturate(112%);
+}
+
+html[data-zha-theme="nahida"] [role="tooltip"] :where(div, span, button, svg) {
+  color: inherit !important;
+}
+
+html[data-zha-theme="nahida"] [role="tooltip"] .text-token-description-foreground {
+  color: rgba(45, 73, 56, 0.74) !important;
+}
+
+html[data-zha-theme="nahida"] :where(input:not([type="checkbox"]):not([type="radio"]), textarea:not(.xterm-helper-textarea), select) {
+  color: var(--nhd-text);
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(89, 139, 91, 0.28);
+  border-radius: var(--nhd-radius-row);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+html[data-zha-theme="nahida"] :where(input:not([type="checkbox"]):not([type="radio"]), textarea:not(.xterm-helper-textarea), select):focus {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(84, 166, 108, 0.62);
+  box-shadow: 0 0 0 3px rgba(114, 220, 163, 0.14);
+}
+
+html[data-zha-theme="nahida"] :where(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--nhd-green-deep);
+}
+
+/* Terminal */
+html[data-zha-theme="nahida"] [id^="terminal-panel-"] {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(247, 251, 245, 0.96), rgba(242, 248, 240, 0.98)) !important;
+  border-top: 1px solid rgba(89, 139, 91, 0.20);
+  border-radius: var(--nhd-radius-panel) var(--nhd-radius-panel) 0 0;
+  box-shadow: 0 -8px 24px rgba(67, 107, 72, 0.05);
+}
+
+html[data-zha-theme="nahida"] [id^="terminal-panel-"]::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 16px;
+  left: 16px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(194, 163, 95, 0.30), rgba(114, 220, 163, 0.52), transparent);
+}
+
+html[data-zha-theme="nahida"] [id^="terminal-panel-"]::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  width: min(280px, 44%);
+  height: 42px;
+  pointer-events: none;
+  background: url("__NHD_FILIGREE_STRONG_DATA__") center top / 100% 42px no-repeat;
+  filter: drop-shadow(0 0 4px rgba(114, 220, 163, 0.16));
+  transform: translateX(-50%);
+}
+
+@keyframes nhd-edge-breathe {
+  0%, 100% { opacity: 0.52; filter: saturate(0.92); }
+  50% { opacity: 0.92; filter: saturate(1.18); }
+}
+
+@keyframes nhd-edge-flow {
+  0%, 100% { background-position: 0% 50%; opacity: 0.55; }
+  50% { background-position: 100% 50%; opacity: 0.88; }
+}
+
+@keyframes nhd-composer-corners {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+html[data-zha-theme="nahida"] [id^="terminal-panel-"] :where(.xterm, .xterm-screen, .xterm-viewport) {
+  background-color: transparent !important;
+}
+
+html[data-zha-theme="nahida"] [id^="terminal-panel-"] .xterm-rows {
+  color: #294334;
+}
+
+/* Scrollbars */
+html[data-zha-theme="nahida"] * {
+  scrollbar-color: rgba(82, 128, 89, 0.30) transparent;
+}
+
+html[data-zha-theme="nahida"] *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-zha-theme="nahida"] *::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, transparent 42%, rgba(89, 139, 91, 0.08) 42%, rgba(89, 139, 91, 0.08) 58%, transparent 58%);
+  border-radius: 999px;
+}
+
+html[data-zha-theme="nahida"] *::-webkit-scrollbar-thumb {
+  min-height: 32px;
+  background: linear-gradient(180deg, rgba(194, 163, 95, 0.48), rgba(96, 151, 98, 0.44) 35%, rgba(114, 220, 163, 0.58) 72%, rgba(76, 123, 89, 0.44));
+  background-clip: padding-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28), 0 0 5px rgba(114, 220, 163, 0.12);
+}
+
+html[data-zha-theme="nahida"] *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(194, 163, 95, 0.62), rgba(91, 148, 94, 0.62) 36%, rgba(114, 220, 163, 0.78) 72%, rgba(76, 123, 89, 0.60));
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36), 0 0 8px rgba(114, 220, 163, 0.24);
+}
+
+html[data-zha-theme="nahida"] *::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle:nth-child(n + 11) {
+    display: none;
+  }
+
+  html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-bubble--wide-only {
+    display: none;
+  }
+
+  html[data-zha-theme="nahida"] aside.app-shell-left-panel {
+    background-position: calc(100% + 34px) 104px, 0 0, 0 0;
+    background-size: 118px 472px, auto, auto;
+  }
+
+  html[data-zha-theme="nahida"] main[data-app-shell-main-surface] {
+    background-size: 76px 76px, auto, auto;
+  }
+
+  html[data-zha-theme="nahida"] [data-zha-chat-pane]::after {
+    background-position:
+      left -4px top 8px,
+      right var(--zha-corner-right-offset, 0px) top var(--zha-corner-top-offset, calc(100% - 212px));
+    background-size:
+      108px 108px,
+      var(--zha-corner-size, 98px) var(--zha-corner-size, 98px);
+  }
+
+  html[data-zha-theme="nahida"] [data-zha-tool-panel] {
+    background-size: 42px 42px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-zha-theme="nahida"] #zha-nahida-ambient {
+    display: block;
+  }
+
+  html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-particle {
+    opacity: var(--particle-opacity);
+    animation: none;
+  }
+
+  html[data-zha-theme="nahida"] #zha-nahida-ambient .nhd-bubble {
+    opacity: var(--bubble-opacity);
+    animation: none;
+    translate: none;
+    scale: 1;
+  }
+
+  html[data-zha-theme="nahida"] *,
+  html[data-zha-theme="nahida"] *::before,
+  html[data-zha-theme="nahida"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

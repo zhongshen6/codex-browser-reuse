@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{n as e,t}from"./text-file-editor-tab-content.electron-f90c9ff15c2f.js";e();export{t as TextFileEditorTabContent};

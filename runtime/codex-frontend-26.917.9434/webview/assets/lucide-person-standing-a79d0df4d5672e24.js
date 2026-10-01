@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-person-standing-7ebdb7fa9cc85935.js";e();export{t as default};

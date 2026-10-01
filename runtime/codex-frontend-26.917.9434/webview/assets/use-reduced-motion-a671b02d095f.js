@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{d0 as t,e6 as n,f0 as r,m0 as i,p0 as a,u0 as o}from"./app-shared-dc8f183e4945.js";function s(){!r.current&&o();let[e]=(0,c.useState)(i.current);return e}var c;function l(){return(l=e((()=>{a(),t(),c=n()})))()}export{s as n,l as t};
+//# sourceMappingURL=use-reduced-motion-a671b02d095f.js.map

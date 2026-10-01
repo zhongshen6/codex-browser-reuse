@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import"./app-initial-fc9a33fdda88.js";import"./app-primary-a7ff54c980af.js";import{n as e,r as t}from"./codex-home-announcements-b9372daabd84.js";import"./home-announcement-state-30c29d761623.js";t();export{e as HomeComposerAnnouncements};

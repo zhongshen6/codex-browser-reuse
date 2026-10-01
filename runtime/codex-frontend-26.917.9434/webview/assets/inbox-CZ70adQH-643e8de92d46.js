@@ -1,0 +1,1 @@
+import{n as e,t}from"./inbox-CZ70adQH-f41ae3265eee.js";e();export{t as default};

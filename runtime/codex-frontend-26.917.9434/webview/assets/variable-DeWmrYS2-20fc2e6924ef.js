@@ -1,0 +1,1 @@
+import{n as e,t}from"./variable-DeWmrYS2-dcc19a9070a5.js";t();export{e as default};

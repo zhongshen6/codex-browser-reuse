@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{n as e,r as t}from"./notifications-settings-27ecc1cce0fb.js";t();export{e as NotificationsSettingsPage};

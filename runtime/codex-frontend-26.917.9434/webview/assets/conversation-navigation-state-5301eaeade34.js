@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{FX as t,oZ as n}from"./app-shared-dc8f183e4945.js";import{$en as r,itn as i}from"./app-initial-fc9a33fdda88.js";var a;function o(){return(o=e((()=>{t(),i(),a=n(r,e=>!1,void 0,{autoDispose:6e4})})))()}export{a as n,o as t};
+//# sourceMappingURL=conversation-navigation-state-5301eaeade34.js.map

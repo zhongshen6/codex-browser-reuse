@@ -1,0 +1,1 @@
+import{n as e,t}from"./message-circle-dashed-YeDK9LcL-e1a45e35b665.js";t();export{e as default};

@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-2d059c5e81f4.js";import{n as t,t as n}from"./wallet-minimal-DMOz2YUg-e5043e576e2f.js";function r(){return(r=e((()=>{n()})))()}r();export{t as default};
+//# sourceMappingURL=wallet-2-BXHzsCgf-f45cf787e09c.js.map

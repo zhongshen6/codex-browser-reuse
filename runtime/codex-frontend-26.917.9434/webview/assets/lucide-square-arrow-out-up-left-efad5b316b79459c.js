@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-square-arrow-out-up-left-54f010231b46668b.js";e();export{t as default};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./lucide-briefcase-conveyor-belt-596d7cd7b66c78cb.js";e();export{t as default};

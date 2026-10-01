@@ -1,0 +1,1 @@
+import{n as e,t}from"./plane-takeoff-D_UJdc9q-ab19437d1daa.js";t();export{e as default};

@@ -1,0 +1,1 @@
+import"./app-shared-dc8f183e4945.js";import{n as e,t}from"./registered-3ef910ac3d7b.js";e();export{t as CreateTextFileTabThumbnail};
