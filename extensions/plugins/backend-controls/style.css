@@ -1,0 +1,41 @@
+/* Navigation buttons inherit the official sidebar classes; only the dialog is new. */
+.browser-backend-dialog {
+  box-sizing: border-box;
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow: auto;
+  border: 1px solid var(--color-border-primary-outline);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font: inherit;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 16%);
+}
+
+/* A native modal supplies focus trapping and keyboard behavior on desktop and mobile. */
+.browser-backend-dialog::backdrop { background: rgb(0 0 0 / 35%); }
+.browser-backend-dialog h2 { margin: 0 0 12px; font-size: 18px; font-weight: 600; }
+.browser-backend-dialog p { margin: 0; font-size: 14px; line-height: 1.6; }
+.browser-backend-dialog [role="status"] { margin-top: 12px; color: var(--color-text-secondary); }
+.browser-backend-dialog [role="status"]:empty { display: none; }
+.browser-backend-dialog .backend-dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+
+/* Use the same semantic color tokens as official primary and secondary actions. */
+.browser-backend-dialog button {
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--color-border-primary-outline);
+  border-radius: var(--radius-button-action, 8px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.browser-backend-dialog button:hover { background: var(--color-background-primary-ghost-hover); }
+.browser-backend-dialog button[data-confirm] { background: var(--color-background-primary-solid); color: var(--color-text-primary-solid); border-color: transparent; }
+.browser-backend-dialog button[data-confirm]:hover { background: var(--color-background-primary-solid-hover); }
+.browser-backend-dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.browser-backend-dialog button:focus-visible { outline: 2px solid var(--color-text-primary); outline-offset: 2px; }

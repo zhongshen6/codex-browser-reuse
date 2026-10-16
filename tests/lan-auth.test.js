@@ -5,7 +5,7 @@ const os = require("node:os");
 const path = require("node:path");
 const http = require("node:http");
 const { once } = require("node:events");
-const { createLanAccessGuard, loadCredentials, isLoopback } = require("../lan-auth");
+const { createLanAccessGuard, loadCredentials, isLoopback } = require("../src/lan-auth");
 
 const username = "codex";
 const password = "fixture-secret";
@@ -335,7 +335,7 @@ test("real wildcard listener protects LAN access but preserves localhost", async
 
 test("server awaits authentication before routes and retains one wildcard listener", () => {
   const project = path.resolve(__dirname, "..");
-  const source = fs.readFileSync(path.join(project, "server.js"), "utf8");
+  const source = fs.readFileSync(path.join(project, "src", "server.js"), "utf8");
   const start = source.indexOf("const server = http.createServer");
   const guard = source.indexOf("if (!await allowRequest(request, response)) return;", start);
   const url = source.indexOf("const url = new URL(request.url", start);
@@ -345,6 +345,6 @@ test("server awaits authentication before routes and retains one wildcard listen
   assert.ok(source.includes('server.listen(port, "0.0.0.0"'));
   assert.ok(source.includes('if (isLan && url.pathname.endsWith("/activate"))'));
   assert.ok(source.indexOf("const allowRequest =") < source.indexOf("startAppServer().catch"));
-  const auth = fs.readFileSync(path.join(project, "lan-auth.js"), "utf8");
+  const auth = fs.readFileSync(path.join(project, "src", "lan-auth.js"), "utf8");
   assert.equal(/www-authenticate|decodeBasic|headers\.authorization/i.test(auth), false);
 });

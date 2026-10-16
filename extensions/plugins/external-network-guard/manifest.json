@@ -1,0 +1,7 @@
+{
+  "id": "external-network-guard",
+  "group": "plugins",
+  "order": 5,
+  "defaultEnabled": true,
+  "runtime": "runtime.js"
+}

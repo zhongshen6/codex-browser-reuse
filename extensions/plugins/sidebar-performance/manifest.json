@@ -1,0 +1,7 @@
+{
+  "id": "sidebar-performance",
+  "group": "plugins",
+  "order": 30,
+  "defaultEnabled": true,
+  "runtime": "runtime.js"
+}

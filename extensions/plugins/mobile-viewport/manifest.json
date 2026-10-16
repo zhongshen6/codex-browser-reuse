@@ -1,0 +1,8 @@
+{
+  "id": "mobile-viewport",
+  "group": "plugins",
+  "order": 10,
+  "defaultEnabled": true,
+  "runtime": "runtime.js",
+  "style": "style.css"
+}

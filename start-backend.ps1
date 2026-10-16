@@ -4,7 +4,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $project = $PSScriptRoot
-$serverFile = Join-Path $project 'server.js'
+$serverFile = Join-Path $project 'src\server.js'
 $rendererIndex = Join-Path $project 'runtime\codex-frontend-26.917.9434\webview\index.html'
 $logs = Join-Path $project 'logs'
 $pidFile = Join-Path $logs 'browser-backend.pid'
@@ -17,18 +17,12 @@ if (-not (Test-Path -LiteralPath $serverFile -PathType Leaf)) {
 if (-not (Test-Path -LiteralPath $rendererIndex -PathType Leaf)) {
     throw "Packaged Codex frontend not found: $rendererIndex"
 }
+# Startup is fully offline; neither system Node nor npm participates.
+. (Join-Path $project 'tools\bundled-runtime.ps1')
+$node = Get-BundledNodePath -ProjectPath $project
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
-$node = (Get-Command node.exe -ErrorAction Stop).Source
-$npm = (Get-Command npm.cmd -ErrorAction SilentlyContinue).Source
-if (-not $npm) {
-    throw 'npm.cmd was not found. Install Node.js with npm, then run .\install.ps1.'
-}
-$nodeMajor = [int]((& $node '--version').TrimStart('v').Split('.')[0])
-if ($nodeMajor -lt 18) {
-    throw "Node.js 18 or newer is required. Found: $(& $node '--version')"
-}
 $basePath = & $node -e 'console.log(require(process.argv[1]).loadDeployment(process.argv[2]).basePath)' `
-    (Join-Path $project 'deployment.js') $project
+    (Join-Path $project 'src\deployment.js') $project
 if ($LASTEXITCODE -ne 0) { throw 'Invalid deployment configuration.' }
 
 function Get-Listener {
@@ -66,6 +60,12 @@ function Resolve-CodexExecutable {
 }
 $env:CODEX_BIN = Resolve-CodexExecutable
 
+# Expose only the bundled Node to child processes, without changing system PATH.
+$env:PATH = (Split-Path -Parent $node) + [IO.Path]::PathSeparator + $env:PATH
+$git = Get-Command git.exe -ErrorAction SilentlyContinue
+if (-not $git) {
+    Write-Warning 'System Git is not installed. Git features are unavailable; chat remains available.'
+}
 $env:PORT = [string]$Port
 $backend = Start-Process -FilePath $node -ArgumentList "`"$serverFile`"" `
     -WorkingDirectory $project -WindowStyle Hidden -PassThru `
@@ -115,6 +115,7 @@ if (-not $appServerReady) {
 Set-Content -LiteralPath $pidFile -Value $backend.Id
 Write-Host "Backend ready: http://127.0.0.1:$Port$basePath"
 Write-Host "Codex CLI: $env:CODEX_BIN"
+Write-Host "Node: $node"
 Write-Host "App Server: running"
 Write-Host "PID: $($backend.Id)"
 Write-Host "Logs: $stdoutFile ; $stderrFile"

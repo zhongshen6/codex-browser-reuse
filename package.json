@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "build:frontend": "node tools/build-frontend.js",
+    "start": "node src/server.js",
     "test": "node --test tests/*.test.js"
   },
   "engines": {

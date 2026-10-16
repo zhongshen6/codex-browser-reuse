@@ -1,0 +1,8 @@
+{
+  "id": "browser-attachments",
+  "group": "plugins",
+  "order": 50,
+  "defaultEnabled": true,
+  "runtime": "runtime.js",
+  "coreAdapter": true
+}

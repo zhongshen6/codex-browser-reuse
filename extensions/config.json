@@ -1,7 +1,15 @@
 {
   "plugins": {
+    "external-network-guard": true,
+    "mobile-viewport": true,
+    "attachment-controls": true,
     "sidebar-touch-scroll": true,
-    "sidebar-performance": true
+    "sidebar-performance": false,
+    "disable-automations": true,
+    "disable-agent-import": true,
+    "right-panel": true,
+    "browser-attachments": true,
+    "backend-controls": true
   },
   "themes": {
     "nahida": false

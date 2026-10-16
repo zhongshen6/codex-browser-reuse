@@ -6,7 +6,7 @@ const { EventEmitter } = require("node:events");
 const { test } = require("node:test");
 
 const project = path.resolve(__dirname, "..");
-const source = fs.readFileSync(path.join(project, "server.js"), "utf8");
+const source = fs.readFileSync(path.join(project, "src", "server.js"), "utf8");
 // Exercise the actual request adapter without starting HTTP, CLI, or Windows.
 // Keep production startup unchanged rather than adding test-only API routes.
 const adapterStart = source.indexOf("const appServerParamKeys =");
@@ -137,7 +137,7 @@ function notificationFixture() {
     }
   };
   const context = vm.createContext({
-    module: { exports: {} }, __dirname: project, process, console, Buffer,
+    module: { exports: {} }, __dirname: path.join(project, "src"), process, console, Buffer,
     setTimeout, clearTimeout,
     require(name) {
       if (name === "node:child_process") return native;
@@ -148,7 +148,7 @@ function notificationFixture() {
       return require(name);
     }
   });
-  vm.runInContext(fs.readFileSync(path.join(project, "desktop-notifications.js"), "utf8"), context);
+  vm.runInContext(fs.readFileSync(path.join(project, "src", "desktop-notifications.js"), "utf8"), context);
   const notifier = context.module.exports.createDesktopNotifications({
     port: 4387, soundDirectory,
     readSettings: () => settings,

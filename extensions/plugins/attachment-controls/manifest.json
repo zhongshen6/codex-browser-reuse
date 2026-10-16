@@ -1,0 +1,7 @@
+{
+  "id": "attachment-controls",
+  "group": "plugins",
+  "order": 15,
+  "defaultEnabled": true,
+  "style": "style.css"
+}

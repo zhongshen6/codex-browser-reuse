@@ -4,7 +4,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $project = $PSScriptRoot
-$serverFile = Join-Path $project 'server.js'
+# Accept a backend entry inside this project, never an unrelated Node listener.
+$entryPattern = '(?:^|\s)"?' + [regex]::Escape($project) +
+    '\\(?:[A-Za-z0-9_-]+\\)*server\.js"?(?=\s|$)'
 $logs = Join-Path $project 'logs'
 $pidFile = Join-Path $logs 'browser-backend.pid'
 
@@ -13,7 +15,7 @@ function Get-BackendProcess([int]$ProcessId) {
     $process = Get-CimInstance Win32_Process -Filter "ProcessId = $ProcessId" `
         -ErrorAction SilentlyContinue
     if (-not $process -or $process.Name -ne 'node.exe') { return $null }
-    if ($process.CommandLine.IndexOf($serverFile, [StringComparison]::OrdinalIgnoreCase) -lt 0) {
+    if (-not $process.CommandLine -or $process.CommandLine -notmatch $entryPattern) {
         return $null
     }
     return $process

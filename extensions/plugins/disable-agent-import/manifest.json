@@ -1,0 +1,8 @@
+{
+  "id": "disable-agent-import",
+  "group": "plugins",
+  "order": 11,
+  "defaultEnabled": true,
+  "coreAdapter": true,
+  "runtime": "runtime.js"
+}

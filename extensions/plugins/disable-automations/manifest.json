@@ -1,0 +1,8 @@
+{
+  "id": "disable-automations",
+  "group": "plugins",
+  "order": 40,
+  "defaultEnabled": true,
+  "runtime": "runtime.js",
+  "coreAdapter": true
+}

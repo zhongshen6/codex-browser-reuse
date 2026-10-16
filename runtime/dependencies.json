@@ -1,0 +1,21 @@
+{
+  "node": {
+    "version": "v24.21.0",
+    "platform": "win32",
+    "arch": "x64",
+    "path": "runtime/node/node.exe",
+    "sha256": "ba4e6d110e8c1592a1ecd390f6b05f3da124b13871a5be62b341a07a853c6c32",
+    "source": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+    "archiveSha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+    "license": "runtime/node/LICENSE"
+  },
+  "packages": {
+    "smol-toml": {
+      "version": "1.9.0",
+      "path": "node_modules/smol-toml",
+      "entry": "dist/index.cjs",
+      "entrySha256": "09ce310a8bcc1bb5c7dc2813c88b4bfbbeb685e4c186a9631ff54da7e85c880f",
+      "license": "LICENSE"
+    }
+  }
+}

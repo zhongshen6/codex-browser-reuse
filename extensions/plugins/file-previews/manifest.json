@@ -1,0 +1,7 @@
+{
+  "id": "file-previews",
+  "group": "plugins",
+  "order": 60,
+  "defaultEnabled": true,
+  "coreAdapter": true
+}

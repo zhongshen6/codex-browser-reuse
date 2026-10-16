@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { parse, stringify } = require("smol-toml");
-const { createDesktopSettings, validateSettings } = require("../desktop-settings");
+const { createDesktopSettings, validateSettings } = require("../src/desktop-settings");
 
 // Parsed TOML tables have null prototypes and may change property order.
 // Compare only their JSON values, as the browser transport does.
@@ -197,4 +197,18 @@ test("fresh reads notice another client and malformed TOML is not hidden", t => 
   assert.equal(f.store.read().followUpQueueMode, "steer");
   fs.writeFileSync(f.configPath, "[desktop\n");
   assert.throws(() => f.store.read());
+});
+
+test("official projectless root persists through CLI configuration and resets to absence", async t => {
+  // An absolute host path is required; never save a path relative to the program.
+  const f = fixture(t, "[desktop]\n");
+  const root = path.join(path.dirname(f.configPath), "tasks");
+  const saved = await f.store.write({ projectlessWorkspaceRoot: root });
+  assert.equal(saved.projectlessWorkspaceRoot, root);
+  assert.deepEqual(f.requests[0].params.edits, [{
+    keyPath: "desktop.projectlessWorkspaceRoot", value: root, mergeStrategy: "replace"
+  }]);
+  assert.throws(() => f.store.write({ projectlessWorkspaceRoot: "relative" }), /Invalid/);
+  const reset = await f.store.write({ projectlessWorkspaceRoot: null });
+  assert.equal(Object.hasOwn(reset, "projectlessWorkspaceRoot"), false);
 });

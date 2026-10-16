@@ -7,7 +7,7 @@ const http = require("node:http");
 const { once } = require("node:events");
 const {
   QueuedFollowUpSendLocks, createQueuedFollowUpSendLockHandler
-} = require("../queued-follow-up-send-locks");
+} = require("../src/queued-follow-up-send-locks");
 
 const project = path.resolve(__dirname, "..");
 const payload = (lockId = "owner-a", messageId = "message-a", conversationId = "thread-a") =>
@@ -121,7 +121,7 @@ test("HTTP invalid requests fail explicitly without acquiring a lease", async t 
   assert.equal((await f.request("acquire", payload())).body.acquired, true);
 });
 
-const bridgeSource = fs.readFileSync(path.join(project, "bridge.js"), "utf8");
+const bridgeSource = fs.readFileSync(path.join(project, "src", "bridge.js"), "utf8");
 const routeStart = bridgeSource.indexOf('      if (url.endsWith("/queued-follow-up-send-lock-acquire")');
 const routeEnd = bridgeSource.indexOf("      // Both desktop pin operations", routeStart);
 assert.ok(routeStart >= 0 && routeEnd > routeStart, "Bridge send lock branch changed");
@@ -170,7 +170,7 @@ test("browser transport reports old backend or network failure instead of silent
 
 test("production lock adapter runs after the network and authentication guard", () => {
   // The standalone transport fixture must not obscure the real server's LAN boundary.
-  const source = fs.readFileSync(path.join(project, "server.js"), "utf8");
+  const source = fs.readFileSync(path.join(project, "src", "server.js"), "utf8");
   const guard = source.indexOf("if (!await allowRequest(request, response)) return;");
   const handler = source.indexOf("if (handleQueuedFollowUpSendLock(request, response, url.pathname))");
   assert.ok(guard >= 0 && handler > guard);

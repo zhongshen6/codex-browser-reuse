@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
-const { createDeployment, loadDeployment, normalizeBasePath } = require("../deployment");
+const { createDeployment, loadDeployment, normalizeBasePath } = require("../src/deployment");
 
 test("deployment paths normalize root and reverse-proxy mounts", () => {
   assert.equal(normalizeBasePath("/"), "/");

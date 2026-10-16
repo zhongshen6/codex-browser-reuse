@@ -8,15 +8,15 @@ const { createRequire } = require("node:module");
 
 const project = path.resolve(__dirname, "..");
 // Preserve server-relative module resolution while simulating a moved __dirname.
-const serverRequire = createRequire(path.join(project, "server.js"));
-const serverSource = fs.readFileSync(path.join(project, "server.js"), "utf8");
+const serverRequire = createRequire(path.join(project, "src", "server.js"));
+const serverSource = fs.readFileSync(path.join(project, "src", "server.js"), "utf8");
 const bootstrapEnd = serverSource.indexOf("const mime =");
 assert.ok(bootstrapEnd > 0, "Server bootstrap boundary changed");
 
 function bootstrap(directory, env = {}) {
   // Evaluate only path declarations: no HTTP listener, CLI, or real state writes.
   const context = vm.createContext({
-    __dirname: directory, require: serverRequire,
+    __dirname: path.join(directory, "src"), require: serverRequire,
     process: { env, platform: "win32" }, console
   });
   return vm.runInContext(

@@ -1,0 +1,7 @@
+{
+  "id": "sidebar-touch-scroll",
+  "group": "plugins",
+  "order": 20,
+  "defaultEnabled": true,
+  "runtime": "runtime.js"
+}

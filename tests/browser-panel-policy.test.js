@@ -2,8 +2,8 @@ const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { createRightPanelPolicy } = require("../browser-panel-policy");
-const { adaptRightPanel } = require("../renderer-panel-adapter");
+const { createRightPanelPolicy } = require("../extensions/plugins/right-panel/runtime");
+const { adaptRightPanel } = require("../src/renderer-panel-adapter");
 
 function fixture() {
   // Test policy decisions separately from the renderer's animation timing.

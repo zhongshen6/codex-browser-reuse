@@ -1,0 +1,8 @@
+{
+  "id": "right-panel",
+  "group": "plugins",
+  "order": 70,
+  "defaultEnabled": true,
+  "runtime": "runtime.js",
+  "coreAdapter": true
+}

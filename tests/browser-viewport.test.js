@@ -1,6 +1,6 @@
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { measureViewport, installViewport } = require("../browser-viewport");
+const { measureViewport, installViewport } = require("../extensions/plugins/mobile-viewport/runtime");
 
 function fixture() {
   // A controlled visual viewport models browser chrome without a real keyboard.

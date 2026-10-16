@@ -1,0 +1,21 @@
+{
+  "id": "nahida",
+  "group": "themes",
+  "order": 100,
+  "defaultEnabled": false,
+  "runtime": "runtime.js",
+  "style": "theme.css",
+  "assets": [
+    "theme.css",
+    "stickers/sticker-01.webp",
+    "stickers/sticker-02.webp",
+    "stickers/sticker-03.webp",
+    "stickers/sticker-04.webp",
+    "stickers/sticker-05.webp",
+    "stickers/sticker-06.webp",
+    "stickers/sticker-07.webp",
+    "stickers/sticker-08.webp",
+    "stickers/sticker-09.webp"
+  ],
+  "serverAdapter": "server-adapter.js"
+}

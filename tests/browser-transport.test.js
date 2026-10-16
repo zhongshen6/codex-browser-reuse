@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
-const { createDeployment } = require("../deployment");
+const { createDeployment } = require("../src/deployment");
 
 function fixture(basePath) {
   const deployment = createDeployment(basePath);
@@ -21,8 +21,8 @@ function fixture(basePath) {
   const project = path.join(__dirname, "..");
   // Test the served bytes, not merely source literals: rewriting caused this regression.
   vm.runInContext(deployment.rewriteResources(
-    fs.readFileSync(path.join(project, "browser-paths.js"), "utf8")), context);
-  const source = fs.readFileSync(path.join(project, "bridge.js"), "utf8");
+    fs.readFileSync(path.join(project, "src", "browser-paths.js"), "utf8")), context);
+  const source = fs.readFileSync(path.join(project, "src", "bridge.js"), "utf8");
   // Isolate production transport before the rest of the renderer installs listeners.
   const transport = source.slice(0, source.indexOf("  // LAN HTTP"));
   vm.runInContext(deployment.rewriteResources(transport) + "\n})();", context);

@@ -1,0 +1,10 @@
+/*
+ * The official composer attachment remove control is hidden until hover.
+ * Scope the override to its attachment surface and ringed button so ordinary
+ * editor controls, menus and preview close buttons keep their original state.
+ */
+.composer-attachment-surface button.ring-2,
+[class~="group/composer-attachment"] button.ring-2 {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
